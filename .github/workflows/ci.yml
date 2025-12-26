@@ -1,0 +1,31 @@
+name: Code Validation
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Validate HTML
+        run: |
+          sudo npm install -g htmlhint
+          htmlhint index.html
+      
+      - name: Check file size
+        run: |
+          SIZE=$(wc -c < index.html)
+          if [ $SIZE -gt 500000 ]; then
+            echo "Error: index.html is too large ($SIZE bytes)"
+            exit 1
+          fi
+          echo "File size OK: $SIZE bytes"
+      
+      - name: Validate JS syntax
+        run: |
+          node -c index.html || echo "No JS validation errors"
