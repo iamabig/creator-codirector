@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Co-Director v2 - MVP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .content {
+            padding: 40px;
+        }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            background: #667eea;
+            color: white;
+            font-size: 14px;
+            margin: 10px;
+        }
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            margin: 20px 0;
+        }
+        .output {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 Creator Co-Director v2</h1>
+            <p>AI-powered video content planning tool</p>
+        </div>
+        
+        <div class="content">
+            <h2>📝 영상 아이디어 입력</h2>
+            <textarea id="ideaInput" placeholder="예: 일상 브이로그, MZ 감성, 15분대, 유머 중심"></textarea>
+            
+            <button onclick="generateOutline()">구조 생성</button>
+            
+            <div id="output" class="output" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <script>
+        function generateOutline() {
+            const idea = document.getElementById('ideaInput').value;
+            if (!idea) {
+                alert('아이디어를 입력해주세요!');
+                return;
+            }
+            
+            const output = document.getElementById('output');
+            output.style.display = 'block';
+            output.innerHTML = `
+<strong>📌 제목 (후보)</strong>
+• "내 일상, 정직하게"
+• "MZ의 하루 일과"
+
+<strong>🎬 3막 구조 (15분)</strong>
+
+<strong>훅 (0:00-0:15)</strong>
+"뜬금없지만, 너도 이런 경험 있어?"
+
+<strong>1막 - 도입 (0:15-3:00)</strong>
+주제 소개 + 개인 경험
+
+<strong>2막 - 전개 (3:00-10:00)</strong>
+핵심 내용 + 시각적 변화
+
+<strong>3막 - 결말 (10:00-15:00)</strong>
+결론 + CTA
+
+<strong>💪 성과 예상</strong>
+• 훅 강도: ⭐⭐⭐⭐⭐
+• 공감도: ⭐⭐⭐⭐⭐
+• 예상 유지율: 70%
+
+✅ 완료! 다음 단계로 스크립트와 샷 리스트를 생성할 수 있습니다.
+            `;
+        }
+    </script>
+</body>
+</html>
